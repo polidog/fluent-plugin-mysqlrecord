@@ -1,6 +1,7 @@
 # fluent-plugin-mysqlrecord
 
 流れてきたデータをそのままinsertするあれ。
+[fluent-plugin-mysql](https://github.com/tagomoris/fluent-plugin-mysql)だと`key_names`だったり、`columns`だったりしていしなきゃいけなかったんで、流れてきたデータをそのままテーブル名だけ指定してinsertしちゃうやつ作りました。
 
 ## Installation
 
