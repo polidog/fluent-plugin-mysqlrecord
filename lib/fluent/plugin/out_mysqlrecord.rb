@@ -33,6 +33,10 @@ module Fluent
       super
     end
 
+    def format(tag, time, record)
+      [tag, time, record].to_msgpack
+    end
+
     def client
       Mysql2::Client.new({
           :host => @host, :port => @port,
@@ -47,10 +51,9 @@ module Fluent
         cols = data.keys.join(",")
         placeholders = data.map{|k| '?'}.join(',')
         sql = "INSERT INTO #{@table} (#{cols}) VALUES (#{placeholders})"
-        handler.xquery(sql, data)
+        handler.xquery(sql, data.values)
       }
       handler.close
     end
-
   end
 end

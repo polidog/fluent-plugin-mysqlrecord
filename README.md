@@ -1,31 +1,29 @@
-# Fluent::Plugin::Mysqlrecord
+# fluent-plugin-mysqlrecord
 
-TODO: Write a gem description
+流れてきたデータをそのままinsertするあれ。
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'fluent-plugin-mysqlrecord'
+```
+$ gem install fluent-plugin-mysqlrecord
 ```
 
-And then execute:
+## Configuration
 
-    $ bundle
+Format:
 
-Or install it yourself as:
+```
+<match application.**>
+  type forest
+  subtype mysqlrecord
+  <template>
+     host 127.0.0.1
+     database table_name
+     username root
+     password root
+     table ${tag_parts[1]}
+     flush_interval 5s
+  </template>
+</match>
 
-    $ gem install fluent-plugin-mysqlrecord
-
-## Usage
-
-TODO: Write usage instructions here
-
-## Contributing
-
-1. Fork it ( https://github.com/[my-github-username]/fluent-plugin-mysqlrecord/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
+```
